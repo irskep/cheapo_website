@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "cheapo"
+version = "0.1.0"
+description = "Scaffolding for a web site that costs less than $10/mo to host on Render"
+authors = ["Steve Landey <steve@steveasleep.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Flask = "2.2.2"
+flask-sqlalchemy = "3.0.2"
+gunicorn = "20.1.0"
+Flask-Migrate = "4.0.2"
+Flask-Login = "0.6.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
