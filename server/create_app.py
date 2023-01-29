@@ -9,6 +9,7 @@ from server.login_manager import login_manager
 
 
 def create_app(test_config=None):
+    is_gunicorn = "gunicorn" in os.environ.get("SERVER_SOFTWARE", "")
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object("server.default_settings")
     app.config.from_prefixed_env()
@@ -18,7 +19,7 @@ def create_app(test_config=None):
     else:
         app.config.from_mapping(test_config)
 
-    if app.config["LOG_WITH_GUNICORN"]:
+    if is_gunicorn:
         gunicorn_logger = logging.getLogger("gunicorn.error")
         app.logger.handlers.extend(gunicorn_logger.handlers)
     else:
@@ -26,7 +27,7 @@ def create_app(test_config=None):
 
     app.logger.setLevel(logging.INFO)
 
-    if "gunicorn" in os.environ.get("SERVER_SOFTWARE", ""):
+    if is_gunicorn:
         app.logger.info("Running in gunicorn")
     else:
         app.logger.info("Running in debug")
