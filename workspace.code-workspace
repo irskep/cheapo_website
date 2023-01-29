@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "[python]": {
+      "editor.insertSpaces": true,
+      "editor.tabSize": 4
+    },
+    "emmet.includeLanguages": { "jinja-html": "html" }
+  }
+}

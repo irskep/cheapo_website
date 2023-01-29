@@ -45,15 +45,10 @@ def create_app(test_config=None):
 
     ### blueprints ###
 
-    from . import bp_auth
+    from . import bp_auth, bp_inside, bp_outside
     app.register_blueprint(bp_auth.bp)
-
-    ### routes ###
-
-    # a simple page that says hello
-    @app.route('/dashboard')
-    def dashboard():
-        return render_template('dashboard.html')
+    app.register_blueprint(bp_inside.bp)
+    app.register_blueprint(bp_outside.bp)
 
     ### commands ###
 

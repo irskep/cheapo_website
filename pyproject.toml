@@ -14,6 +14,7 @@ Flask-Migrate = "4.0.2"
 Flask-Login = "0.6.2"
 
 [tool.poetry.dev-dependencies]
+black = "^22.12.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

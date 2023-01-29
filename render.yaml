@@ -1,16 +1,18 @@
 services:
   - type: web
-    name: cheapo
+    name: cheapo # probably updated this
     env: python
     plan: starter
     # buildCommand: yarn install && yarn build
-    startCommand: rsync -a public/ /data/public/ && yarn start
+    startCommand: rsync -a public/ /data/public/ && gunicorn server:app
     healthCheckPath: /_health
     autoDeploy: false
     disk:
-      name: strapi-data
+      name: db-data
       mountPath: /data
       sizeGB: 1
     envVars:
       - key: SQLALCHEMY_DATABASE_URI
         value: "sqlite://data/app.db"
+      - key: PYTHON_VERSION
+        value: 3.9.13
