@@ -11,9 +11,7 @@ services:
       mountPath: /data
       sizeGB: 1
     envVars:
-      - key: SQLALCHEMY_DATABASE_URI
+      - key: FLASK_SQLALCHEMY_DATABASE_URI
         value: "sqlite://data/app.db"
       - key: PYTHON_VERSION
         value: 3.9.13
-      - key: LOG_WITH_GUNICORN
-        value: true
