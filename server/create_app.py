@@ -65,9 +65,9 @@ def create_app(test_config=None):
     def initdb():
         db.create_all()
 
-    with app.app_context():
-        db.create_all()
+    # with app.app_context():
+    #     db.create_all()
 
-    app.logger.info("Finished initializing database")
+    # app.logger.info("Finished initializing database")
 
     return app
