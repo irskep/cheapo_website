@@ -10,4 +10,4 @@ resetdb:
 
 freeze-deps:
 	rm -f requirements.txt
-	poetry export > requirements.txt
+	poetry export --without-hashes > requirements.txt
