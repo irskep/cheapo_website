@@ -57,4 +57,7 @@ def create_app(test_config=None):
     def initdb():
         db.create_all()
 
+    with app.app_context():
+        db.create_all()
+
     return app
