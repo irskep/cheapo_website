@@ -3,6 +3,7 @@ services:
     name: cheapo # probably updated this
     env: python
     plan: starter
+    buildCommand: pip install -r requirements.txt
     startCommand: gunicorn server:app
     healthCheckPath: /_health
     disk:
