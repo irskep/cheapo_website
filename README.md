@@ -13,7 +13,8 @@ Features:
 ## Deployment
 
 1. Use Render's [Blueprints](https://dashboard.render.com/blueprints) feature.
-2. Configure SECRET_KEY to be a random string (https://www.uuidgenerator.net).
+2. Set the SECRET_KEY env var to be a random string (https://www.uuidgenerator.net).
+3. Set the PYTHON_VERSION env var to 3.9.13 (render.yaml's value is being ignored for some reason)
 
 ## Cost
 
