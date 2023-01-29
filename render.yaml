@@ -6,10 +6,10 @@ services:
     buildCommand: pip install -r requirements.txt
     startCommand: python3 -m gunicorn server:app
     healthCheckPath: /_health
-    # disk:
-    #   name: db-data
-    #   mountPath: /data
-    #   sizeGB: 1
+    disk:
+      name: db-data
+      mountPath: /data
+      sizeGB: 1
     envVars:
       - key: SQLALCHEMY_DATABASE_URI
         value: "sqlite://data/app.db"
