@@ -2,8 +2,9 @@ services:
   - type: web
     name: cheapo # probably updated this
     env: python
-    plan: starter
+    plan: free
     startCommand: gunicorn server:app
+    healthCheckPath: /_health
     disk:
       name: db-data
       mountPath: /data
