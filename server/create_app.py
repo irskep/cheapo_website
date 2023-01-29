@@ -9,7 +9,7 @@ from server.login_manager import login_manager
 
 
 def create_app(test_config=None):
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=False)
     try:
         app.config.from_object("server.default_settings")
     except ImportError:
