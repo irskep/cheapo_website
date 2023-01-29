@@ -3,10 +3,7 @@ services:
     name: cheapo # probably updated this
     env: python
     plan: starter
-    # buildCommand: yarn install && yarn build
-    startCommand: rsync -a public/ /data/public/ && gunicorn server:app
-    healthCheckPath: /_health
-    autoDeploy: false
+    startCommand: gunicorn server:app
     disk:
       name: db-data
       mountPath: /data
