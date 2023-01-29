@@ -24,9 +24,21 @@ def create_app(test_config=None):
     if app.config["LOG_WITH_GUNICORN"]:
         gunicorn_logger = logging.getLogger("gunicorn.error")
         app.logger.handlers.extend(gunicorn_logger.handlers)
-        app.logger.setLevel(gunicorn_logger.level)
     else:
         pass
+
+    app.logger.setLevel(logging.INFO)
+
+    if "gunicorn" in os.environ.get("SERVER_SOFTWARE", ""):
+        app.logger.info("Running in gunicorn")
+    else:
+        app.logger.info("Running in debug")
+
+    app.logger.debug("this is a DEBUG message")
+    app.logger.info("this is an INFO message")
+    app.logger.warning("this is a WARNING message")
+    app.logger.error("this is an ERROR message")
+    app.logger.critical("this is a CRITICAL message")
 
     try:
         os.makedirs(app.instance_path)
@@ -60,15 +72,6 @@ def create_app(test_config=None):
     with app.app_context():
         db.create_all()
 
-    if "gunicorn" in os.environ.get("SERVER_SOFTWARE", ""):
-        app.logger.warning("Running in gunicorn")
-    else:
-        app.logger.info("Running in debug")
-
-    app.logger.debug("this is a DEBUG message")
-    app.logger.info("this is an INFO message")
-    app.logger.warning("this is a WARNING message")
-    app.logger.error("this is an ERROR message")
-    app.logger.critical("this is a CRITICAL message")
+    app.logger.info("Finished initializing database")
 
     return app
