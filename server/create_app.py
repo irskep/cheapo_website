@@ -10,11 +10,8 @@ from server.login_manager import login_manager
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        LOG_WITH_GUNICORN=False,
-        SECRET_KEY="dev",
-        SQLALCHEMY_DATABASE_URI="sqlite:///project.db",
-    )
+    app.config.from_object("server.default_settings")
+    app.config.from_prefixed_env()
 
     if test_config is None:
         app.config.from_pyfile("config.py", silent=True)
