@@ -36,3 +36,7 @@ All Python code is inside `server`, leaving you space to create a `client` direc
 All view functions are inside Flask Blueprints. Each blueprint is defined in a file with a `bp_` prefix. I like this prefix because it keeps the directory flat and makes imports look really obvious, but of course you can rename the files if you want.
 
 `inside` refers to the logged-in-user-oriented views (like "dashboard"), and `outside` refers to logged-out-user-oriented views (like "index", the landing page).
+
+## Backups???
+
+Render automatically backs up the disk every day, so you have data from at most 24 hours ago.
