@@ -67,5 +67,6 @@ def create_app(test_config=None):
         db.create_all()
 
     app.logger.info("Finished initializing database")
+    app.logger.info("Database URI: " + app.config["SQLALCHEMY_DATABASE_URI"])
 
     return app
