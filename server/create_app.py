@@ -32,8 +32,6 @@ def create_app(test_config=None):
     else:
         app.logger.info("Running in debug")
 
-    app.logger.info("Database URI: " + app.config["SQLALCHEMY_DATABASE_URI"])
-
     try:
         os.makedirs(app.instance_path)
     except OSError:
