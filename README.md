@@ -4,6 +4,8 @@ Hosting web sites with databases is too damn expensive if you follow the instruc
 
 Well, I figured it out. Here it is. Fork this repo, change the service name in `render.yaml`, and modify the code to your heart's content.
 
+(Also working on fly.io support, but it doesn't work yet.)
+
 It's 95% Flask boilerplate.
 
 Features:
