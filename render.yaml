@@ -14,7 +14,7 @@ services:
       sizeGB: 1
     envVars:
       - key: FLASK_SQLALCHEMY_DATABASE_URI
-        value: "sqlite:////var/lib/data/app.db"
+        value: "sqlite:////data/app.db"
       - key: PYTHON_VERSION
         value: 3.9.13
       # Be sure to set FLASK_SECRET_KEY in Render!
