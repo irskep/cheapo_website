@@ -55,7 +55,4 @@ def create_app():
 
     app.logger.info("Database URI: " + app.config["SQLALCHEMY_DATABASE_URI"])
 
-    with app.app_context():
-        db.create_all()
-
     return app
