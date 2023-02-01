@@ -7,7 +7,7 @@ processes = []
 
 [build]
   # This is what tells fly.io to use a Python config instead of generic Docker
-  builder = "paketobuildpacks/builder:base"
+  builder = "paketobuildpacks/builder:full"
 
 [env]
   FLASK_SQLALCHEMY_DATABASE_URI = "sqlite:////var/lib/data/app.db"
