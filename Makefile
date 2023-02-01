@@ -18,3 +18,8 @@ docker-build:
 docker-run:
 #	run 'cheapo', map port 5000, and stay attached to STDIN/STDOUT/STDERR
 	docker run -d cheapo -p 5000:5000 -a
+
+fly-makevolume:
+# change 'cheapo' to your app name
+# change 'sjc' to your region
+	fly volumes create -a cheapo -r sjc --size 1 litefs

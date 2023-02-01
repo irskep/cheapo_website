@@ -7,6 +7,7 @@ processes = []
 
 [env]
   FLASK_SQLALCHEMY_DATABASE_URI = "sqlite:////litefs/db"
+  FLASK_AUTOMIGRATE = "true"
 
 [experimental]
   auto_rollback = true

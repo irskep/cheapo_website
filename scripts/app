@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# When some tutorial says to run "flask X", run "scripts/app" instead, otherwise
+# your dependencies won't be available outside Poetry.
+poetry run python -m flask --app server "$@"
