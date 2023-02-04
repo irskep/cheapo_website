@@ -1,7 +1,7 @@
 import logging
 import os
 
-from flask import Flask
+from flask import Flask, g
 from flask_migrate import Migrate
 
 from server.db import User, db
@@ -28,6 +28,11 @@ def create_app():
         from . import bp_maintenance
 
         app.register_blueprint(bp_maintenance.bp)
+
+        # Initialize database stuff so we can run migrations on the command line
+        db.init_app(app)
+        migrate = Migrate(app, db)
+
         return app
 
     if is_gunicorn:
@@ -48,7 +53,9 @@ def create_app():
 
     @login_manager.user_loader
     def load_user(user_id):
-        return User.query.get(int(user_id))
+        user = User.query.get(int(user_id))
+        g.current_user = user
+        return user
 
     ### blueprints ###
 

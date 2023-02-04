@@ -16,6 +16,8 @@ def register():
             error = "Email is required."
         elif not password:
             error = "Password is required."
+        elif User.query.filter_by(email=email).first() is not None:
+            error = "That email is already associated with an account."
 
         if error is None:
             user = User(email=email)
@@ -37,8 +39,9 @@ def login():
         error = None
 
         user = User.query.filter_by(email=email).first()
-
-        if user is None or not user.check_password(password):
+        if user is None:
+            error = "No such user"
+        elif not user.check_password(password):
             error = "Incorrect username or password"
 
         next_url = url_for("inside.dashboard")

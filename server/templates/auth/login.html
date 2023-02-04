@@ -1,4 +1,13 @@
 {% extends "base.html" %} {% block content %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 <form action="{{ url_for('auth.login') }}" method="post">
   <input name="email" type="text" placeholder="email" />
   <input name="password" type="password" />

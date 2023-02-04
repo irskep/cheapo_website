@@ -22,6 +22,10 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String, unique=True, nullable=False, index=True)
     password_hash = db.Column(db.String, unique=True, nullable=False)
 
+    @property
+    def is_anonymous(self):
+        return False
+
     def get_id(self):
         return str(self.id)
 
