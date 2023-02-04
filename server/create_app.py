@@ -14,6 +14,8 @@ def create_app():
     app.config.from_object("server.default_settings")
     app.config.from_prefixed_env()
 
+    is_maintenance = app.config.get("MAINTENANCE_MODE", False)
+
     if is_gunicorn:
         gunicorn_logger = logging.getLogger("gunicorn.error")
         app.logger.handlers.extend(gunicorn_logger.handlers)
@@ -23,22 +25,28 @@ def create_app():
     else:
         app.logger.setLevel(logging.INFO)
 
-    if app.config.get("MAINTENANCE_MODE", False):
+    if is_maintenance:
         app.logger.info("Running in maintenance mode")
+        # load sqlalchemy read-only.
+        app.config["SQLALCHEMY_DATABASE_URI"] += "?mode=ro"
+
+        # if your app supports read-only database connections in general, for example if
+        # almost all routes are for reads, then you could remove the special maintenance
+        # blueprint and just serve your normal routes.
         from . import bp_maintenance
 
         app.register_blueprint(bp_maintenance.bp)
 
         # Initialize database stuff so we can run migrations on the command line
         db.init_app(app)
-        migrate = Migrate(app, db)
+        Migrate(app, db)
 
         return app
 
     if is_gunicorn:
         app.logger.info("Running in gunicorn")
     else:
-        app.logger.info("Running in debug")
+        app.logger.info("Running in the Flask debug server")
 
     try:
         os.makedirs(app.instance_path)
@@ -46,7 +54,7 @@ def create_app():
         pass
 
     db.init_app(app)
-    migrate = Migrate(app, db)
+    Migrate(app, db)
 
     login_manager.init_app(app)
     login_manager.login_view = "login"

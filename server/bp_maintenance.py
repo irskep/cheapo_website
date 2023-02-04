@@ -11,5 +11,5 @@ def _health():
 
 @bp.route("/", methods=["GET"], defaults={"path": ""})
 @bp.route("/<path:path>", methods=["GET"])
-def index():
+def index(path):
     return render_template("maintenance/index.html")
