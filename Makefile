@@ -1,20 +1,19 @@
 ### commands to run while in maintenance mode ###
 
-maintenance-runmigrations:
+maintenance-db-migrate:
 	export FLASK_MAINTENANCE_MODE = 0
-	flask --app server:app db migrate
+	flask --app server db migrate
 
 ### commands to run locally ###
 
 local-serve:
 	poetry run python -m flask --app server --debug run
 
-local-initdb:
-	poetry run python -m flask --app server initdb
+local-db-migrate:
+	poetry run python -m flask --app server db migrate
 
-local-resetdb:
-	rm -f instance/project.db
-	poetry run python -m flask --app server initdb
+local-db-upgrade:
+	poetry run python -m flask --app server db upgrade
 
 # you need to run this in order for prod to install the same dependencies you have in Poetry
 local-freeze-deps:

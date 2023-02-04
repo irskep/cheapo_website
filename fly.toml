@@ -1,4 +1,4 @@
-# fly.toml file generated for cheapo on 2023-01-31T21:53:32-08:00
+# fly.toml file generated for cheapo on 2023-02-04T13:17:53-08:00
 
 app = "cheapo"
 kill_signal = "SIGINT"
@@ -18,8 +18,8 @@ processes = []
   auto_rollback = true
 
 [mounts]
-  source = "data"
   destination = "/var/lib/data"
+  source = "data"
 
 [[services]]
   internal_port = 8080
@@ -32,8 +32,8 @@ processes = []
     type = "connections"
 
   [[services.http_checks]]
-    interval = 10000
     grace_period = "5s"
+    interval = 10000
     method = "get"
     path = "/_health"
     protocol = "http"
