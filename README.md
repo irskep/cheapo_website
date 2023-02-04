@@ -75,6 +75,8 @@ All Python code is inside `server`, leaving you space to create a `client` direc
 
 All view functions are inside Flask Blueprints. Each blueprint is defined in a file with a `bp_` prefix. I like this prefix because it keeps the directory flat and makes imports look really obvious, but of course you can rename the files if you want.
 
+`bp_maintenance.py` contains the routes for maintenance mode (every page will say "this web site is in maintenance mode"). You can remove this file and the call to it in `create_app.py` if you can handle the SQLite database being opened in read-only mode, which is probably nicer.
+
 `inside` refers to the logged-in-user-oriented views (like "dashboard"), and `outside` refers to logged-out-user-oriented views (like "index", the landing page).
 
 ## Backups???
