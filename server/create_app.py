@@ -23,6 +23,13 @@ def create_app():
     else:
         app.logger.setLevel(logging.INFO)
 
+    if app.config.get("MAINTENANCE_MODE", False):
+        app.logger.info("Running in maintenance mode")
+        from . import bp_maintenance
+
+        app.register_blueprint(bp_maintenance.bp)
+        return app
+
     if is_gunicorn:
         app.logger.info("Running in gunicorn")
     else:
