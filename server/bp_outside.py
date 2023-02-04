@@ -13,4 +13,5 @@ def index():
 
 @bp.route("/_health", methods=["GET"])
 def _health():
+    # This route is used during deployment to check that the server process is running.
     return "OK"
