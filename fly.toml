@@ -5,9 +5,9 @@ kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
-[build]
+# [build]
   # This is what tells fly.io to use a Python config instead of generic Docker
-  builder = "paketobuildpacks/builder:full"
+  # builder = "paketobuildpacks/builder:full"
 
 [env]
   FLASK_DEBUG = "1"
