@@ -2,11 +2,11 @@
 
 Hosting web sites with databases is too damn expensive if you follow the instructions on Render, Digital Ocean, Heroku, etc. They all suggest you connect a \$15+/month managed database to your rinky-dink Python app, and you end up paying like $25/month and still having strict limitations. Meanwhile, many people claim SQLite is a perfectly good production database for small web sites, but nobody tells you how to actually deploy it with persistent storage.
 
-Well, I figured it out. Here it is. Fork this repo, change the service name in `render.yaml`, modify the code to your heart's content, and deploy it to `render.com` for $8/mo. Or you can deploy to [Fly.io](https://fly.io) on the free tier, or about $2/mo for 1 shared CPU with 3 GB of data.
+Well, I figured it out. Here it is. Fork this repo, change the service name in `render.yaml`, modify the code to your heart's content, and deploy it to [render.com](https://render.com) for $8/mo. Or you can deploy to [Fly.io](https://fly.io) on the free tier, or about $2/mo for 1 shared CPU with 3 GB of data.
 
-**This setup does not do zero-downtime deployments. Your web site will go down for about a minute during each deploy. _gasp_**
+**This setup does not do zero-downtime deployments. Your web site will go down for about a minute during each deploy. 😱‼️**
 
-(Also working on fly.io support, but it doesn't work yet.)
+**Although I've done my best to test this code and these instructions, it's still just a small weekend experiment, so there might be mistakes.**
 
 It's 95% Flask boilerplate.
 
