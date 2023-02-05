@@ -1,8 +1,8 @@
 ### commands to run while in maintenance mode ###
 
-maintenance-db-migrate:
+maintenance-db-upgrade:
 	export FLASK_MAINTENANCE_MODE = 0
-	flask --app server db migrate
+	flask --app server db upgrade
 
 ### commands to run locally ###
 

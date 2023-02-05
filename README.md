@@ -2,7 +2,9 @@
 
 Hosting web sites with databases is too damn expensive if you follow the instructions on Render, Digital Ocean, Heroku, etc. They all suggest you connect a \$15+/month managed database to your rinky-dink Python app, and you end up paying like $25/month and still having strict limitations. Meanwhile, many people claim SQLite is a perfectly good production database for small web sites, but nobody tells you how to actually deploy it with persistent storage.
 
-Well, I figured it out. Here it is. Fork this repo, change the service name in `render.yaml`, modify the code to your heart's content, and deploy it to `render.com` for $8/mo.
+Well, I figured it out. Here it is. Fork this repo, change the service name in `render.yaml`, modify the code to your heart's content, and deploy it to `render.com` for $8/mo. Or you can deploy to [Fly.io](https://fly.io) on the free tier, or about $2/mo for 1 shared CPU with 3 GB of data.
+
+**This setup does not do zero-downtime deployments. Your web site will go down for about a minute during each deploy. _gasp_**
 
 (Also working on fly.io support, but it doesn't work yet.)
 
@@ -11,7 +13,7 @@ It's 95% Flask boilerplate.
 Features:
 
 - Basic Flask setup with blueprints
-- Flask-Login and Flask-SQLAlchemy are already configured
+- Flask-Login, Flask-SQLAlchemy, and Flask-Migrate are already configured
 - Basic login/register/logout functionality
 - Maintenance mode for running database migrations
 
@@ -60,14 +62,39 @@ Familiarize yourself with [Flask-Migrate](https://flask-migrate.readthedocs.io/e
 Whenever you make a change to your database, follow these steps:
 
 1. Make the change in your Python source code.
-2. Run `make local-db-upgrade` (alias for `poetry run flask --app server db upgrade`) to create the migration files. Check them by hand.
-3. Run `make local-db-migrate` (alias for `poetry run flask --app server db migrate`)
+2. Run `make local-db-migrate` (alias for `poetry run flask --app server db migrate`) to create the migration files. Check them by hand.
+3. Run `make local-db-upgrade` (alias for `poetry run flask --app server db upgrade`)
 4. Commit your changes.
 5. Set the web site to maintenance mode (`FLASK_MAINTENANCE_MODE=1`).
 6. Deploy your changes.
 7. SSH into your service.
-8. Run `make maintenance-db-migrate`.
-9. Set the web site to normal mode (`FLASK_MAINTENANCE_MODE=0`).
+8. Run `make maintenance-db-upgrade`.
+9. Set the web site back to normal mode (`FLASK_MAINTENANCE_MODE=0`).
+
+## Deployment with Fly.io
+
+### First-time setup
+
+1. In `fly.toml`, set `FLASK_MAINTENANCE_MODE` to `1` (instead of `0`) so your first deploy runs in maintenance mode.
+2. Run `fly deploy` to create and deploy an app. (You might need to use `fly launch` instead, I forget. Someone please send me a PR to update this sentence.)
+3. Run `fly secrets set FLASK_SECRET_KEY=(random string)` (https://uuidgenerator.net).
+4. Run `fly ssh console`. In the SSH session, `cd /code && make maintenance-db-upgrade`. (It should be possible to get this down to one line, but I'm having trouble with `fly ssh console -C`.)
+5. In `fly.toml`, set `FLASK_MAINTENANCE_MODE` back to `0`.
+6. Run `fly deploy` to redeploy the site without maintenance mode.
+
+### Database migrations
+
+Familiarize yourself with [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/). Unfortunately for all us web backend developers, we can never escape database migrations, and we need to do them right.
+
+Whenever you make a change to your database, follow these steps:
+
+1. Make the change in your Python source code.
+2. Run `make local-db-migrate` (alias for `poetry run flask --app server db migrate`) to create the migration files. Check them by hand.
+3. Run `make local-db-upgrade` (alias for `poetry run flask --app server db upgrade`)
+4. Commit your changes.
+5. Set the web site to maintenance mode (`fly secrets set FLASK_MAINTENANCE_MODE=1`).
+6. Run `fly ssh console`. In the SSH session, `cd /code && make maintenance-db-upgrade`. (It should be possible to get this down to one line, but I'm having trouble with `fly ssh console -C`.)
+7. Set the web site back to normal mode (`fly secrets set FLASK_MAINTENANCE_MODE=0`).
 
 ## Organization
 

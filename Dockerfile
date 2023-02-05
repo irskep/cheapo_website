@@ -1,6 +1,9 @@
 # pull official base image
 FROM python:3.9.13-alpine
 
+# install dependencies for maintenance (not needed to run the app)
+RUN apk add --no-cache make sqlite
+
 # set work directory
 WORKDIR /usr/src/app
 
@@ -22,4 +25,6 @@ RUN set -ex && \
 # copy project
 COPY . /code/
 
-CMD ["gunicorn", "-b" "0.0.0.0:8000", "server:app"]
+EXPOSE 8080
+
+CMD ["gunicorn", "--bind", ":8080", "server:app"]

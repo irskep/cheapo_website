@@ -10,8 +10,8 @@ processes = []
   # builder = "paketobuildpacks/builder:full"
 
 [env]
-  FLASK_DEBUG = "1"
   FLASK_SQLALCHEMY_DATABASE_URI = "sqlite:////var/lib/data/app.db"
+  FLASK_MAINTENANCE_MODE = 0
   PORT = "8080"
 
 [experimental]
