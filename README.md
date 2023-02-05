@@ -61,7 +61,7 @@ Familiarize yourself with [Flask-Migrate](https://flask-migrate.readthedocs.io/e
 
 Whenever you make a change to your database, follow these steps:
 
-1. Make the change in your Python source code.
+1. Make the change in your Python source code. Consider using [deferred column loading](https://docs.sqlalchemy.org/en/14/orm/loading_columns.html#deferred-column-loading) to eliminate runtime errors before your migration has been applied to your database.
 2. Run `make local-db-migrate` (alias for `poetry run flask --app server db migrate`) to create the migration files. Check them by hand.
 3. Run `make local-db-upgrade` (alias for `poetry run flask --app server db upgrade`)
 4. Commit your changes.
@@ -70,6 +70,7 @@ Whenever you make a change to your database, follow these steps:
 7. SSH into your service.
 8. Run `make maintenance-db-upgrade`.
 9. Set the web site back to normal mode (`FLASK_MAINTENANCE_MODE=0`).
+10. If you used deferred column loading, you can now remove the `deferred()` wrappers.
 
 ## Deployment with Fly.io
 
@@ -88,13 +89,14 @@ Familiarize yourself with [Flask-Migrate](https://flask-migrate.readthedocs.io/e
 
 Whenever you make a change to your database, follow these steps:
 
-1. Make the change in your Python source code.
+1. Make the change in your Python source code. Consider using [deferred column loading](https://docs.sqlalchemy.org/en/14/orm/loading_columns.html#deferred-column-loading) to eliminate runtime errors before your migration has been applied to your database.
 2. Run `make local-db-migrate` (alias for `poetry run flask --app server db migrate`) to create the migration files. Check them by hand.
 3. Run `make local-db-upgrade` (alias for `poetry run flask --app server db upgrade`)
 4. Commit your changes.
 5. Set the web site to maintenance mode (`fly secrets set FLASK_MAINTENANCE_MODE=1`).
 6. Run `fly ssh console`. In the SSH session, `cd /code && make maintenance-db-upgrade`. (It should be possible to get this down to one line, but I'm having trouble with `fly ssh console -C`.)
 7. Set the web site back to normal mode (`fly secrets set FLASK_MAINTENANCE_MODE=0`).
+8. If you used deferred column loading, you can now remove the `deferred()` wrappers.
 
 ## Organization
 
