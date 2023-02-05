@@ -32,3 +32,56 @@ img,
 iframe {
   border: 0;
 }
+
+/* the rest is just for fun */
+
+main.cheapo {
+  background-color: gold;
+  width: 100%;
+  min-height: 100vh;
+
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+    helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial,
+    sans-serif;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main.cheapo h1,
+main.cheapo h2 {
+  text-align: center;
+}
+
+main.cheapo h1 {
+  font-weight: 800;
+  font-size: 4rem;
+  padding: 0 1rem;
+
+  text-shadow: 0.3rem 0.3rem white;
+}
+
+main.cheapo h2 {
+  font-weight: 800;
+  font-size: 3rem;
+  padding: 0 1rem;
+
+  text-shadow: 0.2rem 0.2rem white;
+}
+
+main.cheapo p,
+main.cheapo ol {
+  max-width: 40rem;
+  padding: 0 1rem;
+}
+
+main.cheapo p {
+  line-height: 1.4em;
+}
+
+main.cheapo ol,
+main.cheapo ul {
+  line-height: 2em;
+  margin-left: 1rem;
+}

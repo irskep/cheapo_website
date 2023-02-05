@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
+
+<main class="cheapo m-inside">
+<h1>You logged in!!!</h1>
+<p>
 You are {{ current_user.email }}.
 <a href="{{ url_for('auth.logout') }}">Log out</a>
+</p>
+</main>
 {% endblock %}

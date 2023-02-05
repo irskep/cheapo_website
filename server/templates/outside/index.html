@@ -1,8 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-<p>
-<a href="{{ url_for('auth.login') }}">Log in</a>
-<a href="{{ url_for('auth.register') }}">Register</a>
-</p>
+<main class="cheapo m-outside">
+<h1>The Cheapo Website Template</h1>
 <p>This is the demo deploy of the <a href="https://github.com/irskep/cheapo_website">Cheapo Website Template</a>.
+It doesn't do much, but you can
+<a href="{{ url_for('auth.login') }}">log in</a> or
+<a href="{{ url_for('auth.register') }}">register</a> to test the user account feature.
+</p>
+
+<h2>PostgreSQL is a scam!!!</h2>
+
+<p>Don't let Big Tech sell you an 18 wheeler when all you need is a bicycle.
+Your side project doesn't need a $15/mo Postgres instance. Those 2,000 Medium articles
+about how to deploy your bootcamp app with a Professional Database are trying to bleed you
+dry now that Heroku hates freedom. Keep that storage free, comrade—SQLite is the People's Database!</p>
+
+<h2>Features</h2>
+
+<ol>
+<li>Deploys with just a little downtime, as a treat. Give servers the naps they deserve.</li>
+<li>Potentially zero dollars to host unless you get popular in which case more like two dollars.</li>
+<li>Maybe scalable? If not, it's probably your fault!</li>
+<li>100% unproven but pretty likely to work OK.</li>
+</ol>
+
+<h2>Technology???</h2>
+
+<ol>
+<li>SQLite <strong><em>in production</em></strong> 😈</li>
+<li><a href="https://render.com">Render</a> ($7/mo) or <a href="https://fly.io">Fly.io</a> (basically free)</li>
+<li>Python, <a href="https://flask.palletsprojects.com/en/2.2.x/">Flask</a>, and boilerplate for stuff everybody wants but Flask is too hipster to include by default (Flask-SQLAlchemy, Flask-Login, Flask-Migrate)</li>
+</ol>
+
+</main>
 {% endblock %}
