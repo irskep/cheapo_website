@@ -26,8 +26,8 @@ class User(db.Model, UserMixin):
     # If you don't need these, feel free to delete and run the migration workflow, or
     # ignore them indefinitely.
     # Just remember: https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/
-    name = deferred(db.Column(db.String, nullable=False, default=""))
-    pronouns = deferred(db.Column(db.String, nullable=False, default=""))
+    name = deferred(db.Column(db.String, nullable=False, server_default=""))
+    pronouns = deferred(db.Column(db.String, nullable=False, server_default=""))
 
     @property
     def is_anonymous(self):
