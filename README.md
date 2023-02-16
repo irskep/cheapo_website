@@ -4,7 +4,7 @@ Hosting web sites with databases is too damn expensive if you follow the instruc
 
 Well, I figured it out. Here it is. Fork this repo, change the service name in `render.yaml`, modify the code to your heart's content, and deploy it to [render.com](https://render.com) for $8/mo. Or you can deploy to [Fly.io](https://fly.io) on the free tier, capped at $2/mo if you exceed it.
 
-The demo deployments (the lowest tiers of Render and Fly.io) can do 330 and 110 requests per second, respectively, measured from a home internet connection in San Francisco, CA using `apib`.
+The demo deployments (the lowest tiers of Render and Fly.io) can do 330 and 110 requests per second, respectively, measured from a home internet connection in San Francisco, CA using `apib`. These are honestly really horrible numbers, but probably just reflect the cheap vCPUs they are deployed on.
 
 **This setup does not do zero-downtime deployments. Your web site will go down for about a minute during each deploy. 😱‼️**
 
