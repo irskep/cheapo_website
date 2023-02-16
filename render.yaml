@@ -2,7 +2,7 @@
 # For fly.io, see Procfile and fly.toml.
 services:
   - type: web
-    name: cheapo # probably updated this
+    name: cheapo # update this to your own app name
     env: python
     plan: starter
     buildCommand: pip install -r requirements.txt

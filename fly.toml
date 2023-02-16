@@ -6,7 +6,9 @@ kill_timeout = 5
 processes = []
 
 # [build]
-  # This is what tells fly.io to use a Python config instead of generic Docker
+  # This is what tells fly.io to use a Python config instead of generic Docker.
+  # But don't use it, because it sucks. If you SSH in, then Python isn't even
+  # available to run migrations. Boo.
   # builder = "paketobuildpacks/builder:full"
 
 [env]
