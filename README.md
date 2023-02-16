@@ -61,6 +61,8 @@ make serve
 
 Familiarize yourself with [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/). Unfortunately for all us web backend developers, we can never escape database migrations, and we need to do them right.
 
+**Quick note: it's probably not necessary to use maintenance mode to run migrations, but I haven't had time to update and test new instructions yet.**
+
 Whenever you make a change to your database, follow these steps:
 
 1. Make the change in your Python source code. Consider using [deferred column loading](https://docs.sqlalchemy.org/en/14/orm/loading_columns.html#deferred-column-loading) to eliminate runtime errors before your migration has been applied to your database.
@@ -88,6 +90,8 @@ Whenever you make a change to your database, follow these steps:
 ### Database migrations
 
 Familiarize yourself with [Flask-Migrate](https://flask-migrate.readthedocs.io/en/latest/). Unfortunately for all us web backend developers, we can never escape database migrations, and we need to do them right.
+
+**Quick note: it's probably not necessary to use maintenance mode to run migrations, but I haven't had time to update and test new instructions yet.**
 
 Whenever you make a change to your database, follow these steps:
 
